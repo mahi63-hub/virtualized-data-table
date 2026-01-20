@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useRef, useState, useMemo, useEffect } from "react";
 import { useVirtualizer } from "@tanstack/react-virtual";
 import { useDataFetch } from "../../hooks/useDataFetch";
 import { useTableSorting } from "../../hooks/useTableSorting";
@@ -15,38 +15,64 @@ export default function DataTable() {
   const [page, setPage] = useState(1);
   const [search, setSearch] = useState("");
 
-  const debouncedSearch = useDebounce(search, 400);
-
+  const debouncedSearch = useDebounce(search, 300);
   const { sortBy, sortOrder, toggleSort } = useTableSorting("id");
 
-  const { data, isLoading, isError } = useDataFetch({
-    page,
-    limit: PAGE_SIZE,
-    sortBy,
-    sortOrder,
-    search: debouncedSearch,
-  });
+  const { data, isLoading, isError } = useDataFetch();
+
+  const processedData = useMemo(() => {
+    if (!data) return [];
+
+    let rows = [...data];
+
+    if (debouncedSearch) {
+      const q = debouncedSearch.toLowerCase();
+      rows = rows.filter(
+        (u) =>
+          u.name.toLowerCase().includes(q) ||
+          u.email.toLowerCase().includes(q) ||
+          u.company.toLowerCase().includes(q)
+      );
+    }
+
+    rows.sort((a, b) => {
+      if (sortBy === "id") {
+        return sortOrder === "asc" ? a.id - b.id : b.id - a.id;
+      }
+      if (sortBy === "name") {
+        return sortOrder === "asc"
+          ? a.name.localeCompare(b.name)
+          : b.name.localeCompare(a.name);
+      }
+      return 0;
+    });
+
+    return rows;
+  }, [data, debouncedSearch, sortBy, sortOrder]);
 
   const rowVirtualizer = useVirtualizer({
-    count: data?.data.length ?? 0,
+    count: processedData.length,
     getScrollElement: () => parentRef.current,
     estimateSize: () => 48,
     overscan: 5,
   });
 
+  // ?? Pagination works by scrolling
+  useEffect(() => {
+    if (!parentRef.current) return;
+    parentRef.current.scrollTo({
+      top: (page - 1) * PAGE_SIZE * 48,
+      behavior: "auto",
+    });
+  }, [page]);
+
   if (isLoading) return <p>Loading table...</p>;
-  if (isError) return <p>Failed to load table data</p>;
-  if (!data || data.data.length === 0) return <p>No data available</p>;
+  if (isError) return <p>Error loading data</p>;
+  if (!processedData.length) return <p>No data available</p>;
 
   return (
     <div role="table" aria-label="User Data Table">
-      <SearchInput
-        value={search}
-        onChange={(value) => {
-          setPage(1);
-          setSearch(value);
-        }}
-      />
+      <SearchInput value={search} onChange={setSearch} />
 
       <TableHeader
         sortBy={sortBy}
@@ -73,7 +99,7 @@ export default function DataTable() {
           }}
         >
           {rowVirtualizer.getVirtualItems().map((virtualRow) => {
-            const user = data.data[virtualRow.index];
+            const user = processedData[virtualRow.index];
 
             return (
               <div
@@ -93,18 +119,10 @@ export default function DataTable() {
                   background: "#fff",
                 }}
               >
-                <div role="cell" style={{ width: "80px" }}>
-                  {user.id}
-                </div>
-                <div role="cell" style={{ flex: 1 }}>
-                  {user.name}
-                </div>
-                <div role="cell" style={{ flex: 1 }}>
-                  {user.email}
-                </div>
-                <div role="cell" style={{ flex: 1 }}>
-                  {user.company}
-                </div>
+                <div role="cell" style={{ width: "80px" }}>{user.id}</div>
+                <div role="cell" style={{ flex: 1 }}>{user.name}</div>
+                <div role="cell" style={{ flex: 1 }}>{user.email}</div>
+                <div role="cell" style={{ flex: 1 }}>{user.company}</div>
               </div>
             );
           })}
@@ -114,7 +132,7 @@ export default function DataTable() {
       <Pagination
         page={page}
         pageSize={PAGE_SIZE}
-        total={data.totalCount}
+        total={processedData.length}
         onPageChange={setPage}
       />
     </div>
