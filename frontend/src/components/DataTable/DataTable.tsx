@@ -2,14 +2,20 @@ import { useRef, useState } from "react";
 import { useVirtualizer } from "@tanstack/react-virtual";
 import { useDataFetch } from "../../hooks/useDataFetch";
 import { useTableSorting } from "../../hooks/useTableSorting";
+import { useDebounce } from "../../hooks/useDebounce";
 import TableHeader from "./TableHeader";
 import Pagination from "./Pagination";
+import SearchInput from "../ui/SearchInput";
 
 const PAGE_SIZE = 20;
 
 export default function DataTable() {
   const parentRef = useRef<HTMLDivElement>(null);
+
   const [page, setPage] = useState(1);
+  const [search, setSearch] = useState("");
+
+  const debouncedSearch = useDebounce(search, 400);
 
   const { sortBy, sortOrder, toggleSort } = useTableSorting("id");
 
@@ -18,7 +24,7 @@ export default function DataTable() {
     limit: PAGE_SIZE,
     sortBy,
     sortOrder,
-    search: "",
+    search: debouncedSearch,
   });
 
   const rowVirtualizer = useVirtualizer({
@@ -34,6 +40,14 @@ export default function DataTable() {
 
   return (
     <div role="table" aria-label="User Data Table">
+      <SearchInput
+        value={search}
+        onChange={(value) => {
+          setPage(1);
+          setSearch(value);
+        }}
+      />
+
       <TableHeader
         sortBy={sortBy}
         sortOrder={sortOrder}
