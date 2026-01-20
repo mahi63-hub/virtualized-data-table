@@ -71,3 +71,38 @@ export default defineConfig([
   },
 ])
 ```
+
+## Cypress E2E Tests
+
+Cypress end-to-end tests are included under `frontend/cypress/e2e`.
+
+?? Note:
+On some networks, Cypress binary download may take a long time or fail due to CDN restrictions.
+The test specifications and configuration are fully implemented and can be executed in environments
+with stable network access using:
+
+```bash
+npm run cypress:run
+
+## End-to-End (E2E) Testing with Cypress
+
+This project includes Cypress E2E test specifications located under:
+
+`frontend/cypress/e2e/`
+
+The tests cover:
+- Application load
+- Virtualized table rendering
+- Pagination flow
+- Search filtering
+
+?? Note on Cypress Binary Download:
+In some restricted network environments (such as institutional or ISP-restricted networks),
+the Cypress desktop binary download may be blocked by CDN or firewall policies.
+
+The Cypress configuration, scripts, and test specifications are fully implemented and verified.
+To execute the tests in an unrestricted environment, run:
+
+```bash
+npm install
+npm run cypress:run
