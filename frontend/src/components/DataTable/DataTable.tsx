@@ -1,18 +1,20 @@
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { useVirtualizer } from "@tanstack/react-virtual";
 import { useDataFetch } from "../../hooks/useDataFetch";
 import { useTableSorting } from "../../hooks/useTableSorting";
 import TableHeader from "./TableHeader";
+import Pagination from "./Pagination";
 
 const PAGE_SIZE = 20;
 
 export default function DataTable() {
   const parentRef = useRef<HTMLDivElement>(null);
+  const [page, setPage] = useState(1);
 
   const { sortBy, sortOrder, toggleSort } = useTableSorting("id");
 
   const { data, isLoading, isError } = useDataFetch({
-    page: 1,
+    page,
     limit: PAGE_SIZE,
     sortBy,
     sortOrder,
@@ -35,7 +37,10 @@ export default function DataTable() {
       <TableHeader
         sortBy={sortBy}
         sortOrder={sortOrder}
-        onSort={toggleSort}
+        onSort={(col) => {
+          setPage(1);
+          toggleSort(col);
+        }}
       />
 
       <div
@@ -91,6 +96,13 @@ export default function DataTable() {
           })}
         </div>
       </div>
+
+      <Pagination
+        page={page}
+        pageSize={PAGE_SIZE}
+        total={data.totalCount}
+        onPageChange={setPage}
+      />
     </div>
   );
 }
