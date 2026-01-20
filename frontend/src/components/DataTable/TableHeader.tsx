@@ -9,7 +9,12 @@ export default function TableHeader({
   sortOrder,
   onSort,
 }: TableHeaderProps) {
-  const renderSortIcon = (column: string) => {
+  const getAriaSort = (column: string) => {
+    if (sortBy !== column) return "none";
+    return sortOrder === "asc" ? "ascending" : "descending";
+  };
+
+  const renderIcon = (column: string) => {
     if (sortBy !== column) return "?";
     return sortOrder === "asc" ? "?" : "?";
   };
@@ -27,24 +32,31 @@ export default function TableHeader({
     >
       <button
         role="columnheader"
-        aria-sort={sortBy === "id" ? sortOrder : "none"}
+        aria-sort={getAriaSort("id")}
+        tabIndex={0}
         onClick={() => onSort("id")}
-        style={{ width: "80px", background: "none", border: "none" }}
+        style={{ width: "80px" }}
       >
-        ID {renderSortIcon("id")}
+        ID {renderIcon("id")}
       </button>
 
       <button
         role="columnheader"
-        aria-sort={sortBy === "name" ? sortOrder : "none"}
+        aria-sort={getAriaSort("name")}
+        tabIndex={0}
         onClick={() => onSort("name")}
-        style={{ flex: 1, background: "none", border: "none" }}
+        style={{ flex: 1 }}
       >
-        Name {renderSortIcon("name")}
+        Name {renderIcon("name")}
       </button>
 
-      <div style={{ flex: 1 }}>Email</div>
-      <div style={{ flex: 1 }}>Company</div>
+      <div role="columnheader" style={{ flex: 1 }}>
+        Email
+      </div>
+
+      <div role="columnheader" style={{ flex: 1 }}>
+        Company
+      </div>
     </div>
   );
 }

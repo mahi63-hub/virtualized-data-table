@@ -6,18 +6,20 @@ interface SearchInputProps {
 export default function SearchInput({ value, onChange }: SearchInputProps) {
   return (
     <div style={{ marginBottom: "12px" }}>
-      <label htmlFor="search" style={{ marginRight: "8px" }}>
-        Search:
+      <label htmlFor="search-input">
+        Search users
       </label>
       <input
-        id="search"
+        id="search-input"
         type="text"
         value={value}
         onChange={(e) => onChange(e.target.value)}
-        placeholder="Search users..."
+        placeholder="Type to filter users"
+        aria-label="Search users"
         style={{
+          marginLeft: "8px",
           padding: "6px 8px",
-          width: "220px",
+          width: "240px",
         }}
       />
     </div>
