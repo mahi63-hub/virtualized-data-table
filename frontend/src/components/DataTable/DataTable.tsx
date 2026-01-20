@@ -2,6 +2,7 @@ import { useRef } from "react";
 import { useVirtualizer } from "@tanstack/react-virtual";
 import { useDataFetch } from "../../hooks/useDataFetch";
 import { useTableSorting } from "../../hooks/useTableSorting";
+import TableHeader from "./TableHeader";
 
 const PAGE_SIZE = 20;
 
@@ -30,11 +31,16 @@ export default function DataTable() {
   if (!data || data.data.length === 0) return <p>No data available</p>;
 
   return (
-    <div>
-      <h2>User Table</h2>
+    <div role="table" aria-label="User Data Table">
+      <TableHeader
+        sortBy={sortBy}
+        sortOrder={sortOrder}
+        onSort={toggleSort}
+      />
 
       <div
         ref={parentRef}
+        role="rowgroup"
         style={{
           height: "400px",
           overflow: "auto",
@@ -44,7 +50,6 @@ export default function DataTable() {
         <div
           style={{
             height: `${rowVirtualizer.getTotalSize()}px`,
-            width: "100%",
             position: "relative",
           }}
         >
@@ -54,6 +59,7 @@ export default function DataTable() {
             return (
               <div
                 key={user.id}
+                role="row"
                 style={{
                   position: "absolute",
                   top: 0,
@@ -62,16 +68,24 @@ export default function DataTable() {
                   height: `${virtualRow.size}px`,
                   transform: `translateY(${virtualRow.start}px)`,
                   display: "flex",
-                  padding: "0 12px",
                   alignItems: "center",
+                  padding: "0 12px",
                   borderBottom: "1px solid #eee",
                   background: "#fff",
                 }}
               >
-                <div style={{ width: "80px" }}>{user.id}</div>
-                <div style={{ flex: 1 }}>{user.name}</div>
-                <div style={{ flex: 1 }}>{user.email}</div>
-                <div style={{ flex: 1 }}>{user.company}</div>
+                <div role="cell" style={{ width: "80px" }}>
+                  {user.id}
+                </div>
+                <div role="cell" style={{ flex: 1 }}>
+                  {user.name}
+                </div>
+                <div role="cell" style={{ flex: 1 }}>
+                  {user.email}
+                </div>
+                <div role="cell" style={{ flex: 1 }}>
+                  {user.company}
+                </div>
               </div>
             );
           })}
