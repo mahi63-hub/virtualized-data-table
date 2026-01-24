@@ -1,16 +1,80 @@
-* {
-  box-sizing: border-box;
+/* Global */
+body {
+  font-family: "Segoe UI", Arial, sans-serif;
+  background: #f4f6fb;
+  margin: 0;
+  padding: 0;
 }
 
-body {
-  margin: 0;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
-    Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
-  background-color: #f9fafb;
-  color: #111827;
+/* Card */
+.table-card {
+  background: white;
+  max-width: 900px;
+  margin: 40px auto;
+  padding: 24px;
+  border-radius: 14px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.08);
 }
-button:focus-visible,
-input:focus-visible {
-  outline: 3px solid #2563eb;
-  outline-offset: 2px;
+
+/* Title */
+.table-card h2 {
+  margin-bottom: 16px;
+  color: #4f46e5;
+}
+
+/* Search */
+.table-search {
+  padding: 10px;
+  width: 280px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  margin-bottom: 16px;
+}
+
+/* Table */
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+thead {
+  background: #eef2ff;
+}
+
+th {
+  text-align: left;
+  padding: 12px;
+  cursor: pointer;
+  color: #1e1b4b;
+}
+
+td {
+  padding: 12px;
+  border-bottom: 1px solid #eee;
+}
+
+tbody tr:hover {
+  background: #f9fafb;
+}
+
+/* Pagination */
+.pagination {
+  margin-top: 16px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+button {
+  background: #4f46e5;
+  color: white;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+button:disabled {
+  background: #9ca3af;
+  cursor: not-allowed;
 }

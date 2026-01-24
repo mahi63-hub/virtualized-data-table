@@ -1,22 +1,16 @@
-version: "3.8"
-
 services:
   frontend:
-    build:
-      context: ./frontend
-      dockerfile: Dockerfile
+    build: ./frontend
     ports:
       - "3000:80"
     depends_on:
       - mock-api
-    environment:
-      - VITE_API_BASE_URL=http://mock-api:3001
 
   mock-api:
     image: node:18-alpine
     working_dir: /data
     volumes:
-      - ./db.json:/data/db.json
-    command: npx json-server --watch db.json --host 0.0.0.0 --port 3001
+      - ./mock-api:/data
+    command: sh -c "npm install -g json-server && json-server --watch db.json --host 0.0.0.0 --port 3001"
     ports:
       - "3001:3001"
