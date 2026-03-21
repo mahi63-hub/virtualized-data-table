@@ -1,5 +1,5 @@
 import React from 'react';
-import { User } from '../../hooks/useDataFetch';
+import type { User } from '../../hooks/useDataFetch';
 
 interface TableRowProps {
   user: User;

@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect, useMemo } from 'react';
 import { useVirtualizer } from '@tanstack/react-virtual';
-import type { User } from '../../hooks/useDataFetch';
+
 import { useDataFetch } from '../../hooks/useDataFetch';
 import { useDebounce } from '../../hooks/useDebounce';
 import SearchInput from '../ui/SearchInput';
