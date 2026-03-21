@@ -1,11 +1,13 @@
 import React, { useState, useRef, useEffect, useMemo } from 'react';
 import { useVirtualizer } from '@tanstack/react-virtual';
+import type { User } from '../../hooks/useDataFetch';
 import { useDataFetch } from '../../hooks/useDataFetch';
 import { useDebounce } from '../../hooks/useDebounce';
 import SearchInput from '../ui/SearchInput';
 import LoadingSpinner from '../ui/LoadingSpinner';
 import Pagination from './Pagination';
-import TableHeader, { SortConfig } from './TableHeader';
+import TableHeader from './TableHeader';
+import type { SortConfig } from './TableHeader';
 import TableRow from './TableRow';
 import { AlertCircle } from 'lucide-react';
 

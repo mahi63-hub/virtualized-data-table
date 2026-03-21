@@ -1,0 +1,35 @@
+﻿src/App.tsx(1,50): error TS2307: Cannot find module '@tanstack/react-query' or its corresponding type declarations.
+src/components/DataTable/DataTable.test.tsx(2,26): error TS6133: 'waitFor' is declared but its value is never read.
+src/components/DataTable/DataTable.test.tsx(2,35): error TS6133: 'fireEvent' is declared but its value is never read.
+src/components/DataTable/DataTable.test.tsx(3,50): error TS2307: Cannot find module '@tanstack/react-query' or its corresponding type declarations.
+src/components/DataTable/DataTable.test.tsx(24,1): error TS2593: Cannot find name 'describe'. Do you need to install type definitions for a test runner? Try `npm i --save-dev @types/jest` or `npm i --save-dev @types/mocha` and then add 'jest' or 'mocha' to the types field in your tsconfig.
+src/components/DataTable/DataTable.test.tsx(25,3): error TS2304: Cannot find name 'beforeEach'.
+src/components/DataTable/DataTable.test.tsx(29,3): error TS2593: Cannot find name 'it'. Do you need to install type definitions for a test runner? Try `npm i --save-dev @types/jest` or `npm i --save-dev @types/mocha` and then add 'jest' or 'mocha' to the types field in your tsconfig.
+src/components/DataTable/DataTable.test.tsx(38,5): error TS2304: Cannot find name 'expect'.
+src/components/DataTable/DataTable.test.tsx(41,3): error TS2593: Cannot find name 'it'. Do you need to install type definitions for a test runner? Try `npm i --save-dev @types/jest` or `npm i --save-dev @types/mocha` and then add 'jest' or 'mocha' to the types field in your tsconfig.
+src/components/DataTable/DataTable.test.tsx(50,5): error TS2304: Cannot find name 'expect'.
+src/components/DataTable/DataTable.test.tsx(54,3): error TS2593: Cannot find name 'it'. Do you need to install type definitions for a test runner? Try `npm i --save-dev @types/jest` or `npm i --save-dev @types/mocha` and then add 'jest' or 'mocha' to the types field in your tsconfig.
+src/components/DataTable/DataTable.test.tsx(63,5): error TS2304: Cannot find name 'expect'.
+src/components/DataTable/DataTable.test.tsx(64,5): error TS2304: Cannot find name 'expect'.
+src/components/DataTable/DataTable.test.tsx(65,5): error TS2304: Cannot find name 'expect'.
+src/components/DataTable/DataTable.tsx(2,32): error TS2307: Cannot find module '@tanstack/react-virtual' or its corresponding type declarations.
+src/components/DataTable/DataTable.tsx(8,23): error TS1484: 'SortConfig' is a type and must be imported using a type-only import when 'verbatimModuleSyntax' is enabled.
+src/components/DataTable/DataTable.tsx(10,29): error TS2307: Cannot find module 'lucide-react' or its corresponding type declarations.
+src/components/DataTable/DataTable.tsx(125,58): error TS7006: Parameter 'virtualRow' implicitly has an 'any' type.
+src/components/DataTable/Pagination.tsx(2,72): error TS2307: Cannot find module 'lucide-react' or its corresponding type declarations.
+src/components/DataTable/TableHeader.tsx(2,53): error TS2307: Cannot find module 'lucide-react' or its corresponding type declarations.
+src/components/DataTable/TableRow.tsx(2,10): error TS1484: 'User' is a type and must be imported using a type-only import when 'verbatimModuleSyntax' is enabled.
+src/components/ui/LoadingSpinner.tsx(2,25): error TS2307: Cannot find module 'lucide-react' or its corresponding type declarations.
+src/components/ui/SearchInput.tsx(1,24): error TS2307: Cannot find module 'lucide-react' or its corresponding type declarations.
+src/hooks/useDataFetch.ts(1,44): error TS2307: Cannot find module '@tanstack/react-query' or its corresponding type declarations.
+src/hooks/useDataFetch.ts(2,21): error TS1484: 'FetchDataParams' is a type and must be imported using a type-only import when 'verbatimModuleSyntax' is enabled.
+src/hooks/useDataFetch.ts(2,38): error TS1484: 'PaginatedData' is a type and must be imported using a type-only import when 'verbatimModuleSyntax' is enabled.
+src/hooks/useDebounce.test.ts(5,1): error TS2593: Cannot find name 'describe'. Do you need to install type definitions for a test runner? Try `npm i --save-dev @types/jest` or `npm i --save-dev @types/mocha` and then add 'jest' or 'mocha' to the types field in your tsconfig.
+src/hooks/useDebounce.test.ts(6,3): error TS2304: Cannot find name 'beforeEach'.
+src/hooks/useDebounce.test.ts(10,3): error TS2304: Cannot find name 'afterEach'.
+src/hooks/useDebounce.test.ts(14,3): error TS2593: Cannot find name 'it'. Do you need to install type definitions for a test runner? Try `npm i --save-dev @types/jest` or `npm i --save-dev @types/mocha` and then add 'jest' or 'mocha' to the types field in your tsconfig.
+src/hooks/useDebounce.test.ts(16,5): error TS2304: Cannot find name 'expect'.
+src/hooks/useDebounce.test.ts(19,3): error TS2593: Cannot find name 'it'. Do you need to install type definitions for a test runner? Try `npm i --save-dev @types/jest` or `npm i --save-dev @types/mocha` and then add 'jest' or 'mocha' to the types field in your tsconfig.
+src/hooks/useDebounce.test.ts(31,5): error TS2304: Cannot find name 'expect'.
+src/hooks/useDebounce.test.ts(39,5): error TS2304: Cannot find name 'expect'.
+src/services/api.ts(1,19): error TS2307: Cannot find module 'axios' or its corresponding type declarations.

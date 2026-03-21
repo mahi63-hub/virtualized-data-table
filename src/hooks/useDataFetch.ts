@@ -1,5 +1,6 @@
 import { useQuery, keepPreviousData } from '@tanstack/react-query';
-import { fetchData, FetchDataParams, PaginatedData } from '../services/api';
+import type { FetchDataParams, PaginatedData } from '../services/api';
+import { fetchData } from '../services/api';
 
 export interface User {
   id: number;
